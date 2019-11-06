@@ -389,6 +389,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_entity_entity_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/entity/entity.component */ "./src/app/components/entity/entity.component.ts");
 /* harmony import */ var _components_connection_connection_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/connection/connection.component */ "./src/app/components/connection/connection.component.ts");
 /* harmony import */ var _pipes_x_pipe_pipe__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pipes/x-pipe.pipe */ "./src/app/pipes/x-pipe.pipe.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
 
 
 
@@ -413,7 +415,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_10__["HttpClientModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -892,6 +895,7 @@ let SolverService = class SolverService {
         }
         this.entitiesService.refreshConnections();
         this.entitiesService.degenerateProblemSolveVisible = false;
+        this.entitiesService.getAlfasBetasVisible = true;
     }
     getNonBaseVectors() {
         const nonBase = [];

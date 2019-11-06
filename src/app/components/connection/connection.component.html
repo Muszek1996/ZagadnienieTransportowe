@@ -1,0 +1,19 @@
+<div class="cell" [ngClass]="{'baseVertex': transportConnection.value !== 0 || transportConnection.isBase}">
+  <div>
+    <label>
+      <i class="fa fa-dollar"></i><input type="number" [(ngModel)]="transportConnection.cost" [min]="0" [max]="9999999"/><i *ngIf="transportConnection.value !== 0 || transportConnection.isBase" class="fa fa-star"></i>
+    </label>
+  </div>
+  <br />
+
+  <br />
+  <div class="value">
+   {{transportConnection.value | xPipe}} <i class="fa fa-truck"></i>
+  </div>
+  <i *ngIf="transportConnection.isClosedLoopPossible" class="fa fa-connectdevelop"></i>
+  <div class="optimalityIndicator" *ngIf="!(transportConnection.value !== 0 || transportConnection.isBase)"> {{transportConnection.optimalityIndicator}}</div>
+</div>
+
+
+
+

@@ -1,0 +1,29 @@
+.cell{
+  margin: 5px;
+  height: 100%;
+  width:100%;
+}
+
+input{
+  width: 40px;
+}
+
+.optimalityIndicator{
+  position: relative;
+  top: -35%;
+  left: -4%;
+  transform: translate(50%,50%);
+}
+
+.value{
+  float: right;
+  font-weight: 900;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.fa-star{
+  color: gold;
+  font-size: 1.1rem;
+}
+

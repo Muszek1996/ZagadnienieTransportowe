@@ -1,0 +1,65 @@
+<div class="table"  *ngIf="showComponent">
+  <table>
+    <tr>
+      <th class="background" [ngClass]="{'wrong': entitiesService.suppliersSum !== entitiesService.recipientsSum}">
+        <div><span class="bottom">Σ= {{entitiesService.suppliersSum}}</span>
+          <span class="top">Σ= {{entitiesService.recipientsSum}}</span>
+          <div class="line"></div>
+        </div>
+      </th>
+      <th *ngFor="let recipient of entitiesService.recipients; last as isLast">
+        <div class="recipientWrapper">
+          <app-entity [entity]="recipient"></app-entity>
+        </div>
+        <div *ngIf="isLast" class="addRecipientButtonsWrapper">
+          <button (click)="addRecipient()">
+            <i class="fa fa-plus" aria-hidden="true"> </i>
+          </button>
+          <button  *ngIf="entitiesService.recipients.length>1" (click)="removeRecipient()">
+            <i class="fa fa-minus" aria-hidden="true"> </i>
+          </button>
+        </div>
+      </th>
+      <th style="width:50px; font-size: xx-large">α</th>
+    </tr>
+    <tr class="row" *ngFor="let supplier of entitiesService.suppliers; last as isLast; index as supplierIndex">
+      <td>
+        <app-entity [entity]="supplier"></app-entity>
+        <div *ngIf="isLast" >
+          <button  (click)="addSupplier()">
+            <i class="fa fa-plus" aria-hidden="true"> </i>
+          </button><br />
+          <button *ngIf="entitiesService.suppliers.length>1" (click)="removeSupplier()">
+            <i class="fa fa-minus " aria-hidden="true"> </i>
+          </button>
+        </div>
+      </td>
+      <td *ngFor="let connection of entitiesService.transportConnections[supplierIndex]" [ngClass]="{'baseVertex': connection.value !== 0 || connection.isBase}">
+        <app-connection [transportConnection]="connection"></app-connection>
+      </td>
+      <td  style="width:50px; font-size: xx-large">
+        {{entitiesService.alfas[supplierIndex]}}
+      </td>
+    </tr>
+    <tr style="height: 50px; font-size: xx-large">
+      <td>β</td>
+      <td *ngFor="let recipient of entitiesService.recipients; last as isLast; index as recipientIndex">  {{entitiesService.betas[recipientIndex]}} </td>
+    </tr>
+    <tr style="height: 20px;">
+      <td colspan="5"> Koszty transportu:  <i class="fa fa-money" aria-hidden="true"> </i> {{entitiesService.totalCost}}</td>
+    </tr>
+
+  </table>
+  <div id="buttonsWrapper">
+    <button class="btn stepButton" *ngIf="entitiesService.countVisible" (click)="solver.count()">Oblicz wartości transportów</button>
+    <button class="btn stepButton" *ngIf="entitiesService.degenerateProblemSolveVisible" (click)="solver.degenerateProblemSolve()">Problem degeneracji - dołóż zerowe pole bazowe</button>
+    <button class="btn stepButton" *ngIf="entitiesService.getAlfasBetasVisible" (click)="solver.getAlfasBetas()">Oblicz zmienne dualne</button>
+    <button class="btn stepButton" *ngIf="entitiesService.getOptimalityVisible " (click)="solver.getOptimalityIndicators(); oIVisible = !oIVisible">Oblicz wskaźniki optymalności</button>
+    <button class="btn stepButton" *ngIf="entitiesService.findCycleVisible" (click)="solver.findCycle();">Znajdź cykl i odpowiednio zmień wartości transportu</button>
+  </div>
+  <button class="btn licz" *ngIf="entitiesService.autoVisible" (click)="licz()">Licz automatycznie!</button>
+  <button class="reload btn" onClick="window.location.reload();" >Przeładuj</button>
+</div>
+
+
+
