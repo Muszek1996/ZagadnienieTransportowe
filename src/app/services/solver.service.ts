@@ -47,6 +47,7 @@ export class SolverService {
 
         if (this.entitiesService.getBaseVertexCount() !==
           (this.entitiesService.suppliers.length + this.entitiesService.recipients.length - 1)) {
+          this.entitiesService.degenerateProblemSolveVisible = true;
           alert(`Ilość wierzchołków bazowych nie zgodna (m+n-1) => (${this.entitiesService.suppliers.length }
       +${this.entitiesService.recipients.length}-1)
       != ${this.entitiesService.getBaseVertexCount()}`);
