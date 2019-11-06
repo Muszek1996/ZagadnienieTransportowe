@@ -72,7 +72,7 @@ export class Graph {
     if (this.vertexList.length <= 0) { return; }
     this.vertexList.forEach((v, i) => {
 
-      if (v.isBase) { v.value = Number.MAX_SAFE_INTEGER; }
+      if (v.isBase) { v.value = 999; }
 
       if (v.value !== 0) {
         const currRow =  v.currRow();

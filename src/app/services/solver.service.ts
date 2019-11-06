@@ -48,6 +48,7 @@ export class SolverService {
         if (this.entitiesService.getBaseVertexCount() !==
           (this.entitiesService.suppliers.length + this.entitiesService.recipients.length - 1)) {
           this.entitiesService.degenerateProblemSolveVisible = true;
+          this.entitiesService.getAlfasBetasVisible = false;
           alert(`Ilość wierzchołków bazowych nie zgodna (m+n-1) => (${this.entitiesService.suppliers.length }
       +${this.entitiesService.recipients.length}-1)
       != ${this.entitiesService.getBaseVertexCount()}`);
@@ -84,6 +85,8 @@ export class SolverService {
 
 
     degenerateProblemSolve() {
+      this.entitiesService.degenerateProblemSolveVisible = false;
+      this.entitiesService.getAlfasBetasVisible = true;
       const newBaseCandidates = [];
 
       const nonBase = this.getNonBaseVectors();
@@ -121,6 +124,7 @@ export class SolverService {
           zeroBaseVertex = nbc;
         }
       });
+      if (zeroBaseVertex === undefined) {val = 0; zeroBaseVertex = 0; }
 
       if (!!zeroBaseVertex) {
         console.log(zeroBaseVertex.isBase = true);
