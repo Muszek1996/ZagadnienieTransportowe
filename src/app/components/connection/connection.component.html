@@ -11,7 +11,7 @@
    {{transportConnection.value | xPipe}} <i class="fa fa-truck"></i>
   </div>
   <i *ngIf="transportConnection.isClosedLoopPossible" class="fa fa-connectdevelop"></i>
-  <div class="optimalityIndicator" *ngIf="!(transportConnection.value !== 0 || transportConnection.isBase)"> {{transportConnection.optimalityIndicator}}</div>
+  <div class="optimalityIndicator" *ngIf="!(transportConnection.value !== 0 || transportConnection.isBase)"> {{transportConnection.optimalityIndicator | number}}</div>
 </div>
 
 
