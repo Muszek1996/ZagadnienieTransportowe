@@ -867,6 +867,7 @@ var SolverService = /** @class */ (function () {
             this.entitiesService.betas.length !== this.entitiesService.recipients.length) && ++i < 100) {
             if (this.entitiesService.getBaseVertexCount() !==
                 (this.entitiesService.suppliers.length + this.entitiesService.recipients.length - 1)) {
+                this.entitiesService.degenerateProblemSolveVisible = true;
                 alert("Ilo\u015B\u0107 wierzcho\u0142k\u00F3w bazowych nie zgodna (m+n-1) => (" + this.entitiesService.suppliers.length + "\n      +" + this.entitiesService.recipients.length + "-1)\n      != " + this.entitiesService.getBaseVertexCount());
                 return;
             }

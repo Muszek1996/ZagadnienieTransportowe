@@ -830,6 +830,7 @@ let SolverService = class SolverService {
             this.entitiesService.betas.length !== this.entitiesService.recipients.length) && ++i < 100) {
             if (this.entitiesService.getBaseVertexCount() !==
                 (this.entitiesService.suppliers.length + this.entitiesService.recipients.length - 1)) {
+                this.entitiesService.degenerateProblemSolveVisible = true;
                 alert(`Ilość wierzchołków bazowych nie zgodna (m+n-1) => (${this.entitiesService.suppliers.length}
       +${this.entitiesService.recipients.length}-1)
       != ${this.entitiesService.getBaseVertexCount()}`);
