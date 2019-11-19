@@ -37,12 +37,12 @@
       <td *ngFor="let connection of entitiesService.transportConnections[supplierIndex]" [ngClass]="{'baseVertex': connection.value !== 0 || connection.isBase}">
         <app-connection [transportConnection]="connection"></app-connection>
       </td>
-      <td  style="width:50px; font-size: xx-large">
+      <td  style="width:50px">
         {{entitiesService.alfas[supplierIndex]}}
       </td>
     </tr>
-    <tr style="height: 50px; font-size: xx-large">
-      <td>β</td>
+    <tr style="height: 50px">
+      <td style="font-size: xx-large">β</td>
       <td *ngFor="let recipient of entitiesService.recipients; last as isLast; index as recipientIndex">  {{entitiesService.betas[recipientIndex]}} </td>
     </tr>
     <tr style="height: 20px;">
@@ -51,13 +51,13 @@
 
   </table>
   <div id="buttonsWrapper">
-    <button class="btn stepButton" *ngIf="entitiesService.countVisible" (click)="solver.count()">Oblicz wartości transportów</button><br  *ngIf="entitiesService.countVisible"/>
+    <button class="btn stepButton" [disabled]="entitiesService.recipientsSum !== entitiesService.suppliersSum" *ngIf="entitiesService.countVisible" (click)="solver.count()">Oblicz wartości transportów</button><br  *ngIf="entitiesService.countVisible"/>
     <button class="btn stepButton" *ngIf="entitiesService.degenerateProblemSolveVisible" (click)="solver.degenerateProblemSolve()">Problem degeneracji - dołóż zerowe pole bazowe</button><br *ngIf="entitiesService.countVisible" />
     <button class="btn stepButton" *ngIf="entitiesService.getAlfasBetasVisible" (click)="solver.getAlfasBetas()">Oblicz zmienne dualne</button><br  *ngIf="entitiesService.countVisible"/>
     <button class="btn stepButton" *ngIf="entitiesService.getOptimalityVisible " (click)="solver.getOptimalityIndicators(); oIVisible = !oIVisible">Oblicz wskaźniki optymalności</button><br  *ngIf="entitiesService.countVisible"/>
     <button class="btn stepButton" *ngIf="entitiesService.findCycleVisible" (click)="solver.findCycle();">Znajdź cykl i odpowiednio zmień wartości transportu</button><br  *ngIf="entitiesService.countVisible"/>
   </div>
-  <button class="btn licz" *ngIf="entitiesService.autoVisible" (click)="licz()">Licz automatycznie!</button>
+  <button class="btn licz" [disabled]="entitiesService.recipientsSum !== entitiesService.suppliersSum" *ngIf="entitiesService.autoVisible" (click)="licz()">Licz automatycznie!</button>
   <button class="reload btn" onClick="window.location.reload();" >Przeładuj</button>
 </div>
 
